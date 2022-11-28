@@ -6,13 +6,13 @@ public class SortingArray {
     public static void main(String[] args) {
         int[] myArray = {10, 3, 22, 75, 12};
         for (int i = 0; i < myArray.length; i++) {
-            int c;
+            int temp;
             for (int j = 0; j < myArray.length; j++) {
                 if (myArray[j] % 2 == 0) {
                     i++;
-                    c = myArray[i - 1];
+                    temp = myArray[i - 1];
                     myArray[i - 1] = myArray[j];
-                    myArray[j] = c;
+                    myArray[j] = temp;
                 }
             }
             for (i = 0; i < myArray.length; i++) {
