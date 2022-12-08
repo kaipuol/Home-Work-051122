@@ -1,25 +1,37 @@
-//Элементы массива, упорядоченные соответствующим образом.
-//Сначала чётные элементы массива в том порядке, как они встречаются в массиве,
-//затем нечётные элементы массива в том порядке, как они встречаются в массиве.
+import java.util.Arrays;
 
 public class SortingArray {
-    public static void main(String[] args) {
-        int[] myArray = {10, 3, 22, 75, 12};
-        for (int i = 0; i < myArray.length; i++) {
-            int j = 0, c=0;
-            while (j != myArray.length) {
-                if (myArray[j] % 2 == 0) {
-                    i=i+1;
-                    c = myArray[i-1];
-                    myArray[i-1] = myArray[j];
-                    myArray[j] = c;
+    public static void main(String[] args) throws InterruptedException {
+        int N = 1000000;
+        int[] myArray = new int[N];
+        for (int i = 0; i < N; i++) {
+            myArray[i] = (int) (1+ Math.random() * N);
+        }
+        long start = System.nanoTime();
+        //Arrays.sort(myArray);
+        boolean isSorted = false;
+        int temp;
+        while (!isSorted) {
+            isSorted = true;
+            for (int j = 0; j < myArray.length - 1; j++) {
+                if (myArray[j] > myArray[j+1]) {
+                    isSorted = false;
+                    temp = myArray[j];
+                    myArray[j] = myArray[j + 1];
+                    myArray[j + 1] = temp;
                 }
-                j++;
-            }
-            for (i = 0; i < myArray.length; i++) {
-                System.out.println(myArray[i]);
             }
         }
+        System.out.println(Arrays.toString(myArray));
+        Thread.sleep(1000);
+        long finish = System.nanoTime();
+        long elapsed = finish - start;
+        for (int values : myArray) {
+            System.out.println(values + " ");
+        }
+        System.out.println("Прошло времени, мс: " + elapsed / 1000000);
     }
 }
+
+
 
